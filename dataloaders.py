@@ -17,10 +17,8 @@ def data_loader(csv_path):
     df["labels"] = df["path"].map(
         lambda x: "positive" if "positive" in x else "negative"
     )
-
-    # # remove word MURAv1.1 from path
-    # df["path"] = df["path"].map(lambda x: "/".join(x.split("/")[1:]))
-
+    df["path"] = df["path"].map(lambda x: x.replace("MURA-v1.1/", ""))
+    # print(df["path"])
     return df
 
 
@@ -28,11 +26,10 @@ def return_dataloaders(PATH, batch_size):
 
     df_train = data_loader(os.path.join(PATH, TRAIN_CSV_NAME))
     df_test = data_loader(os.path.join(PATH, VALID_CSV_NAME))
-    # df_train["path"] = df_train["path"].map(lambda x: os.path.join(PATH, x))
-    # df_test["path"] = df_test["path"].map(lambda x: os.path.join(PATH, x))
+
     df_train["sub_class"] = df_train["path"].str.split("/").map(lambda x: x[2])
     df_test["sub_class"] = df_test["path"].str.split("/").map(lambda x: x[2])
-    print(df_train.head().iloc[0])
+    # print(df_train.head().iloc[0])
     # DOPPING ROWS OF FOREARM AND HUMERUS
     df_train.drop(
         df_train[
@@ -70,7 +67,7 @@ def return_dataloaders(PATH, batch_size):
         dataframe=df_train,
         x_col="path",
         y_col="labels",
-        directory="../input/mura-v1.1",
+        directory=PATH,
         class_mode="binary",
         classes=["positive", "negative"],
         subset=None,
@@ -83,7 +80,7 @@ def return_dataloaders(PATH, batch_size):
         dataframe=df_valid,
         x_col="path",
         y_col="labels",
-        directory="../input/mura-v1.1",
+        directory=PATH,
         class_mode="binary",
         classes=["positive", "negative"],
         subset=None,
@@ -96,7 +93,7 @@ def return_dataloaders(PATH, batch_size):
         dataframe=df_test,
         x_col="path",
         y_col="labels",
-        directory="../input/mura-v1.1",
+        directory=PATH,
         class_mode="binary",
         classes=["positive", "negative"],
         subset=None,

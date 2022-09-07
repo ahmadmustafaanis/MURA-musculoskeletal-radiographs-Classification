@@ -1,0 +1,5 @@
+Found 27606 validated image filenames belonging to 2 classes.
+Found 9202 validated image filenames belonging to 2 classes.
+Found 3197 validated image filenames belonging to 2 classes.
+Epoch 1/10
+   1/1726 [..............................] - ETA: 4:14:32 - loss: 0.8467 - accuracy: 0.5000 - mean_squared_error: 0.3036 - root_mean_squared_error: 0.5510   2/1726 [..............................] - ETA: 2:22:19 - loss: 0.7794 - accuracy: 0.5000 - mean_squared_error: 0.2812 - root_mean_squared_error: 0.5303

@@ -1,4 +1,5 @@
 import argparse
+import sys
 
 import tensorflow as tf
 
@@ -10,11 +11,13 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--epochs", type=int, default=10)
 parser.add_argument("--batch_size", type=int, default=16)
 parser.add_argument("--model_path", type=str, default="models/anyfilepath.h5")
-parser.add_argument("--data_path", type=str, default="/kaggle/input/mura-v11")
+parser.add_argument("--data_path", type=str, default="../input/mura-v1.1/MURA-v1.1")
 
+sys.stdout = open("training_logs.txt", "w", buffering=1, encoding="utf-8")
 
 train_dataloader, valid_dataloader, test_dataloader = return_dataloaders(
-    parser.parse_args().data_path, parser.parse_args().batch_size
+    parser.parse_args().data_path,
+    parser.parse_args().batch_size,
 )
 
 my_callbacks = [
