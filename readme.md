@@ -1,6 +1,6 @@
 # Murav1.1
 
-## To Run
+## To Train
 
 * Create a folder named input
 * Create a folder named src
@@ -10,7 +10,7 @@ src/
 |    models/
 |    dataloaders.py
 |    preprocessor.py
-|    run.py
+|    train.py
 |    readme.md
 ________________
 input/
@@ -25,13 +25,13 @@ input/
 ________________
 ```
 
-* Go to the src directory first and the run `run.py`
+* Go to the src directory first and the run `train.py`
 ```
 $ cd src
-$ python run.py --data_path ../input/mura-v1.1/MURA-v1.1/
+$ python train.py --data_path ../input/mura-v1.1/MURA-v1.1/
 ```
 
 You can specify batch size, number of epochs, saved model name via folowing
 ```
-$ python run.py --data_path ../input/mura-v1.1/MURA-v1.1/ --epochs 100 --model_path models/modelname.h5 --batchsize 16
+$ python train.py --data_path ../input/mura-v1.1/MURA-v1.1/ --epochs 100 --model_path models/modelname.h5 --batchsize 16
 ```
